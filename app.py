@@ -18,7 +18,7 @@ st.sidebar.info(
 
 st.sidebar.divider()
 
-st.sidebar.title("🗂️ Fontes de Dados")
+st.sidebar.title("Fontes de Dados")
 st.sidebar.markdown(
     """
     Os dados utilizados neste projeto são públicos e oficiais:
