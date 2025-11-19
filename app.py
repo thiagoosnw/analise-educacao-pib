@@ -32,6 +32,15 @@ st.sidebar.markdown(
 )
 
 st.sidebar.divider()
+st.sidebar.markdown(
+    """
+    **Inspiração**
+    
+    Este projeto foi inspirado no trabalho visionário de [Hans Rosling](https://www.gapminder.org/) e na fundação Gapminder, promovendo uma visão de mundo baseada em fatos.
+    """
+)
+
+st.sidebar.divider()
 st.sidebar.header("Filtros de Análise")
 
 
