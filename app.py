@@ -36,16 +36,8 @@ st.sidebar.header("Filtros de Análise")
 
 
 st.title("🎓 A Riqueza Traz Educação?")
-st.markdown("""
-Esta aplicação interativa analisa a correlação histórica entre o **PIB per Capita (PPP)** e a **Média de Anos de Estudo** em diversos países entre 1990 e 2023.
-
-**Fontes de Dados:**
-* 💰 *Riqueza:* Banco Mundial (GDP per capita, PPP)
-* *Educação:* UNDP Human Development Reports
-""")
+st.markdown("Esta aplicação interativa analisa a correlação histórica entre o **PIB per Capita (PPP)** e a **Média de Anos de Estudo** em diversos países entre 1990 e 2023.")
 st.divider()
-
-
 @st.cache_data
 def carregar_dados():
 
