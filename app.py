@@ -53,7 +53,7 @@ grupos = {
     'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA'],
     'BRICS': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE'],
     'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA'],
-    'Tigres Asiáticos': ['KOR', 'SGP', 'HKG', 'MYS', 'THA', 'VNM', 'IDN', 'PHL', 'CHN'],
+    'Tigres Asiáticos (+ Novos)': ['KOR', 'SGP', 'HKG', 'MYS', 'THA', 'VNM', 'IDN', 'PHL', 'CHN'],
     'OCDE': ['USA', 'GBR', 'DEU', 'FRA', 'JPN', 'KOR', 'AUS', 'CAN', 'ESP', 'ITA', 'NLD', 'SWE', 'CHE', 'NOR', 'DNK', 'FIN', 'PRT', 'CHL', 'ISR', 'TUR'],
     'OPEP/Petróleo': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY'],
     'União Europeia': ['AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'],
