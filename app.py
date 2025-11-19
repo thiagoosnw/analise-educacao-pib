@@ -18,6 +18,15 @@ st.sidebar.info(
 
 st.sidebar.divider()
 
+st.sidebar.divider()
+st.sidebar.markdown(
+    """
+    **Inspiração**
+    
+    Este projeto foi inspirado no trabalho visionário de [Hans Rosling](https://www.gapminder.org/) e na fundação Gapminder, promovendo uma visão de mundo baseada em fatos.
+    """
+)
+
 st.sidebar.title("Fontes de Dados")
 st.sidebar.markdown(
     """
@@ -28,15 +37,6 @@ st.sidebar.markdown(
     
     2. **Educação - Indicador Mean Years of Schooling (years):**
     🔗 [UNDP Human Development Reports](https://hdr.undp.org/data-center/documentation-and-downloads)
-    """
-)
-
-st.sidebar.divider()
-st.sidebar.markdown(
-    """
-    **Inspiração**
-    
-    Este projeto foi inspirado no trabalho visionário de [Hans Rosling](https://www.gapminder.org/) e na fundação Gapminder, promovendo uma visão de mundo baseada em fatos.
     """
 )
 
