@@ -26,7 +26,7 @@ Esta aplicação interativa analisa a correlação histórica entre o **PIB per 
 
 **Fontes de Dados:**
 * 💰 *Riqueza:* Banco Mundial (GDP per capita, PPP)
-* 📚 *Educação:* UNDP Human Development Reports
+* *Educação:* UNDP Human Development Reports
 """)
 st.divider()
 
@@ -66,7 +66,7 @@ def carregar_dados():
 try:
     df = carregar_dados()
 except Exception as e:
-    st.error("❌ Erro ao carregar os arquivos de dados.")
+    st.error("Erro ao carregar os arquivos de dados.")
     st.warning("Verifique se os arquivos 'hdr-data.xlsx' e 'API_NY.GDP....csv' estão na mesma pasta do 'app.py'.")
     st.stop()
 
