@@ -73,14 +73,14 @@ st.sidebar.markdown(
 )
 
 st.sidebar.divider()
-st.sidebar.markdown("### Sobre o Autor")
+st.sidebar.markdown("###Autor")
 st.sidebar.info(
     """
     **Thiago Alcebiades Rodrigues**
     
     📧 [thiago.alcebiades@unifesp.br](mailto:thiago.alcebiades@unifesp.br)
     
-    👔 [Perfil no LinkedIn](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
+    [Perfil no LinkedIn](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
     """
 )
 
