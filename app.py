@@ -57,7 +57,7 @@ grupos = {
     'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA']
 }
 
-grupos['🌎 Todos os Países (Mundial)'] = list(df['geo'].unique())
+grupos['Mundial'] = list(df['geo'].unique())
 
 grupo_selecionado = st.sidebar.selectbox("Escolha um Grupo:", list(grupos.keys()))
 lista_paises = grupos[grupo_selecionado]
