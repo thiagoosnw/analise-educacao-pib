@@ -8,7 +8,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🎓 A Riqueza Traz Educação?")
+st.title("🎓 Riqueza & Educação: Qual a Relação?")
 st.markdown("Esta aplicação interativa analisa a correlação histórica entre o **PIB per Capita (PPP)** e a **Média de Anos de Estudo** em diversos países entre 1990 e 2023.")
 st.divider()
 
