@@ -52,10 +52,14 @@ st.sidebar.header("🎛️ Filtros de Análise")
 grupos = {
     'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA'],
     'BRICS': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE'],
-    'América do Sul': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'ECU', 'GUY', 'PRY', 'PER', 'SUR', 'URY', 'VEN'],
-    'Lusófonos': ['BRA', 'PRT', 'AGO', 'MOZ', 'CPV', 'GNB', 'STP', 'TLS'],
-    'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA']
+    'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA'],
+    'Tigres Asiáticos': ['KOR', 'SGP', 'HKG', 'MYS', 'THA', 'VNM', 'IDN', 'PHL', 'CHN'],
+    'OCDE': ['USA', 'GBR', 'DEU', 'FRA', 'JPN', 'KOR', 'AUS', 'CAN', 'ESP', 'ITA', 'NLD', 'SWE', 'CHE', 'NOR', 'DNK', 'FIN', 'PRT', 'CHL', 'ISR', 'TUR'],
+    'OPEP/Petróleo': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY'],
+    'União Europeia': ['AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'],
+    'América Latina': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'CRI', 'CUB', 'DOM', 'ECU', 'SLV', 'GTM', 'HND', 'MEX', 'NIC', 'PAN', 'PRY', 'PER', 'URY', 'VEN']
 }
+
 
 grupos['Mundial'] = list(df['geo'].unique())
 
