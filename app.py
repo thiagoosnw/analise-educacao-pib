@@ -26,7 +26,7 @@ st.sidebar.markdown(
     1. **Riqueza (PIB per Capita PPP):**
     🔗 [Banco Mundial (World Bank Open Data)](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)
     
-    2. **Educação (Anos de Estudo):**
+    2. **Educação - Indicador Mean Years of Schooling (years):**
     🔗 [UNDP Human Development Reports](https://hdr.undp.org/data-center/documentation-and-downloads)
     """
 )
