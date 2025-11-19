@@ -50,14 +50,16 @@ except Exception as e:
 st.sidebar.header("🎛️ Filtros de Análise")
 
 grupos = {
-    'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA'],
-    'BRICS': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE'],
+    'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA', 'ESP'],
+    'BRICS (Expandido)': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE', 'SAU'],
     'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA'],
-    'Tigres Asiáticos (+ Novos)': ['KOR', 'SGP', 'HKG', 'MYS', 'THA', 'VNM', 'IDN', 'PHL', 'CHN'],
-    'OCDE': ['USA', 'GBR', 'DEU', 'FRA', 'JPN', 'KOR', 'AUS', 'CAN', 'ESP', 'ITA', 'NLD', 'SWE', 'CHE', 'NOR', 'DNK', 'FIN', 'PRT', 'CHL', 'ISR', 'TUR'],
-    'OPEP/Petróleo': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY'],
-    'União Europeia': ['AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'],
-    'América Latina': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'CRI', 'CUB', 'DOM', 'ECU', 'SLV', 'GTM', 'HND', 'MEX', 'NIC', 'PAN', 'PRY', 'PER', 'URY', 'VEN']
+    'América do Sul': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'ECU', 'GUY', 'PRY', 'PER', 'SUR', 'URY', 'VEN'],
+    'América Latina e Caribe': ['ARG', 'BHS', 'BRB', 'BLZ', 'BOL', 'BRA', 'CHL', 'COL', 'CRI', 'CUB', 'DOM', 'ECU', 'SLV', 'GTM', 'GUY', 'HTI', 'HND', 'JAM', 'MEX', 'NIC', 'PAN', 'PRY', 'PER', 'SUR', 'TTO', 'URY', 'VEN'],
+    'Ásia (Principais)': ['CHN', 'JPN', 'IND', 'KOR', 'IDN', 'SAU', 'TUR', 'THA', 'MYS', 'VNM', 'PHL', 'SGP', 'BGD', 'PAK'],
+    'Europa (União Europeia)': ['AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'],
+    'Lusófonos': ['BRA', 'PRT', 'AGO', 'MOZ', 'CPV', 'GNB', 'STP', 'TLS'],
+    'Tigres Asiáticos (+ Novos)': ['KOR', 'SGP', 'HKG', 'TWN', 'MYS', 'THA', 'VNM', 'IDN'], 
+    'OPEP + Outros': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY', 'RUS', 'GUY']
 }
 
 
