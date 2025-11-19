@@ -73,7 +73,7 @@ st.sidebar.markdown(
 )
 
 st.sidebar.divider()
-st.sidebar.markdown("###Autor")
+st.sidebar.markdown("### Autor")
 st.sidebar.info(
     """
     **Thiago Alcebiades Rodrigues**
