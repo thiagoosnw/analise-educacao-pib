@@ -57,6 +57,8 @@ grupos = {
     'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA']
 }
 
+grupos['🌎 Todos os Países (Mundial)'] = list(df['geo'].unique())
+
 grupo_selecionado = st.sidebar.selectbox("Escolha um Grupo:", list(grupos.keys()))
 lista_paises = grupos[grupo_selecionado]
 
@@ -80,7 +82,7 @@ st.sidebar.info(
     
     📧 [thiago.alcebiades@unifesp.br](mailto:thiago.alcebiades@unifesp.br)
     
-    [Perfil no LinkedIn](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
+    👔 [Perfil no LinkedIn](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
     """
 )
 
@@ -111,7 +113,7 @@ else:
         hover_name="name",           
         log_x=True,                 
         size_max=60,
-        range_x=[1000, max_x],       
+        range_x=[500, max_x],       
         range_y=[0, 14],
         labels={
             "gdp_per_capita": "PIB per Capita (US$ PPP)",
