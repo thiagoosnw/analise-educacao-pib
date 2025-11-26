@@ -52,6 +52,10 @@ def carregar_dados():
 
     df_final = pd.merge(df_pib, df_edu_final, on=['geo', 'year'], how='inner')
     df_final = pd.merge(df_final, df_pop[['geo', 'year', 'population']], on=['geo', 'year'], how='left')
+    # formatted population string with thousands separator (comma)
+    df_final['population_str'] = df_final['population'].apply(
+        lambda x: f"{int(x):,}" if pd.notna(x) else "N/A"
+    )
     return df_final
 
 try:
@@ -131,7 +135,7 @@ else:
         size="population",      
         color="name",                
         hover_name="name",  
-        custom_data=["gdp_per_capita", "population"],   
+        custom_data=["gdp_per_capita", "population", "population_str"],   
         log_x=True,                 
         size_max=60,
         range_x=[500, max_x],       
@@ -148,7 +152,7 @@ else:
         hovertemplate=(
             "<b>%{hovertext}</b>\n"
             "GDP per Capita (US$ PPP): %{customdata[0]:,.2f}\n"
-            "Population: %{customdata[1]:,.0f}\n"
+            "Population: %{customdata[2]}\n"
             "Years of Schooling: %{y:.2f}<extra></extra>"
         )
     )
