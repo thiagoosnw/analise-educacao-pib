@@ -106,7 +106,7 @@ st.subheader(f"🌍 Evolução Histórica: {grupo_selecionado}")
 if df_filtrado.empty:
     st.warning("Dados insuficientes para este grupo.")
 else:
-    max_x = df_filtrado['gdp_per_capita'].max() * 1.1
+    max_x = df_filtrado['gdp_per_capita'].max() * 1.5
     
     fig = px.scatter(
         df_filtrado, 
