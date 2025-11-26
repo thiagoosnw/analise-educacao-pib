@@ -115,7 +115,8 @@ st.sidebar.caption(
     """
 )
 
-df_filtrado = df[df['geo'].isin(lista_paises)].dropna()
+df_filtrado = df[df['geo'].isin(lista_paises)].dropna(subset=['gdp_per_capita', 'years_schooling']).copy()
+df_filtrado['population_for_size'] = df_filtrado['population'].fillna(1)
 
 st.subheader(f"🌍 Historical Evolution: {grupo_selecionado}")
 
@@ -130,7 +131,7 @@ else:
         y="years_schooling",
         animation_frame="year",      
         animation_group="name",     
-        size="population",      
+        size="population_for_size",      
         color="name",                
         hover_name="name",  
         custom_data=["gdp_per_capita", "population", "population_str"],   
