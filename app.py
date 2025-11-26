@@ -13,45 +13,45 @@ st.markdown("This interactive application analyzes the historical correlation be
 st.divider()
 
 @st.cache_data
-def carregar_dados():
+def load_data():
     df_wb = pd.read_csv('API_NY.GDP.PCAP.PP.CD_DS2_en_csv_v2_216039.csv', skiprows=4)
-    cols_fixas = ['Country Code', 'Country Name']
-    anos = [str(ano) for ano in range(1990, 2024)]
-    cols_existentes = [c for c in cols_fixas + anos if c in df_wb.columns]
+    fixed_cols = ['Country Code', 'Country Name']
+    years = [str(y) for y in range(1990, 2024)]
+    existing_cols = [c for c in fixed_cols + years if c in df_wb.columns]
     
-    df_pib = df_wb[cols_existentes].melt(
+    df_gdp = df_wb[existing_cols].melt(
         id_vars=['Country Code', 'Country Name'], 
         var_name='year', 
         value_name='gdp_per_capita'
     )
-    df_pib = df_pib.rename(columns={'Country Code': 'geo', 'Country Name': 'name'})
-    df_pib['year'] = pd.to_numeric(df_pib['year'])
-    df_pib['geo'] = df_pib['geo'].str.upper()
+    df_gdp = df_gdp.rename(columns={'Country Code': 'geo', 'Country Name': 'name'})
+    df_gdp['year'] = pd.to_numeric(df_gdp['year'])
+    df_gdp['geo'] = df_gdp['geo'].str.upper()
 
-    df_edu = pd.read_excel('hdr-data.xlsx')
-    df_edu.columns = df_edu.columns.str.strip()
-    df_edu['year'] = pd.to_numeric(df_edu['year'], errors='coerce')
-    df_edu = df_edu[(df_edu['year'] >= 1990) & (df_edu['year'] <= 2023)]
+    df_education = pd.read_excel('hdr-data.xlsx')
+    df_education.columns = df_education.columns.str.strip()
+    df_education['year'] = pd.to_numeric(df_education['year'], errors='coerce')
+    df_education = df_education[(df_education['year'] >= 1990) & (df_education['year'] <= 2023)]
     
-    df_edu_final = df_edu[['countryIsoCode', 'year', 'value']].copy()
-    df_edu_final = df_edu_final.rename(columns={'countryIsoCode': 'geo', 'value': 'years_schooling'})
-    df_edu_final['geo'] = df_edu_final['geo'].str.upper()
-    df_edu_final['years_schooling'] = pd.to_numeric(df_edu_final['years_schooling'], errors='coerce')
+    df_education_final = df_education[['countryIsoCode', 'year', 'value']].copy()
+    df_education_final = df_education_final.rename(columns={'countryIsoCode': 'geo', 'value': 'years_schooling'})
+    df_education_final['geo'] = df_education_final['geo'].str.upper()
+    df_education_final['years_schooling'] = pd.to_numeric(df_education_final['years_schooling'], errors='coerce')
 
-    df_pop = pd.read_csv('API_SP.POP.TOTL_DS2_en_csv_v2_246068.csv', skiprows=4)
-    cols_existentes_pop = [c for c in cols_fixas + anos if c in df_pop.columns]
-    df_pop = df_pop[cols_existentes_pop].melt(
+    df_population = pd.read_csv('API_SP.POP.TOTL_DS2_en_csv_v2_246068.csv', skiprows=4)
+    existing_cols_pop = [c for c in fixed_cols + years if c in df_population.columns]
+    df_population = df_population[existing_cols_pop].melt(
         id_vars=['Country Code', 'Country Name'],
         var_name='year',
         value_name='population'
     )
-    df_pop = df_pop.rename(columns={'Country Code': 'geo', 'Country Name': 'name'})
-    df_pop['year'] = pd.to_numeric(df_pop['year'])
-    df_pop['geo'] = df_pop['geo'].str.upper()
-    df_pop['population'] = pd.to_numeric(df_pop['population'], errors='coerce')
+    df_population = df_population.rename(columns={'Country Code': 'geo', 'Country Name': 'name'})
+    df_population['year'] = pd.to_numeric(df_population['year'])
+    df_population['geo'] = df_population['geo'].str.upper()
+    df_population['population'] = pd.to_numeric(df_population['population'], errors='coerce')
 
-    df_final = pd.merge(df_pib, df_edu_final, on=['geo', 'year'], how='inner')
-    df_final = pd.merge(df_final, df_pop[['geo', 'year', 'population']], on=['geo', 'year'], how='left')
+    df_final = pd.merge(df_gdp, df_education_final, on=['geo', 'year'], how='inner')
+    df_final = pd.merge(df_final, df_population[['geo', 'year', 'population']], on=['geo', 'year'], how='left')
     # formatted population string with thousands separator (comma)
     df_final['population_str'] = df_final['population'].apply(
         lambda x: f"{int(x):,}" if pd.notna(x) else "N/A"
@@ -59,14 +59,14 @@ def carregar_dados():
     return df_final
 
 try:
-    df = carregar_dados()
+    df = load_data()
 except Exception as e:
     st.error("Error loading data. Please check the required files are present in the folder.")
     st.stop()
 
 st.sidebar.header("🎛️ Analysis Filters")
 
-grupos = {
+groups = {
     'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA', 'ESP'],
     'BRICS (Expanded)': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE', 'SAU'],
     'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA'],
@@ -79,10 +79,11 @@ grupos = {
     'OPEC + Others': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY', 'RUS', 'GUY']
 }
 
-grupos['World'] = list(df['geo'].unique())
+groups['No filter'] = list(df['geo'].unique())
+groups['World'] = list(df['geo'].unique())
 
-grupo_selecionado = st.sidebar.selectbox("Choose a Group:", list(grupos.keys()))
-lista_paises = grupos[grupo_selecionado]
+selected_group = st.sidebar.selectbox("Choose a Group:", list(groups.keys()))
+country_list = groups[selected_group]
 
 st.sidebar.divider()
 st.sidebar.markdown("### 🗂️ Data Sources")
@@ -115,18 +116,18 @@ st.sidebar.caption(
     """
 )
 
-df_filtrado = df[df['geo'].isin(lista_paises)].dropna(subset=['gdp_per_capita', 'years_schooling']).copy()
-df_filtrado['population_for_size'] = df_filtrado['population'].fillna(1)
+df_filtered = df[df['geo'].isin(country_list)].dropna(subset=['gdp_per_capita', 'years_schooling']).copy()
+df_filtered['population_for_size'] = df_filtered['population'].fillna(1)
 
-st.subheader(f"🌍 Historical Evolution: {grupo_selecionado}")
+st.subheader(f"🌍 Historical Evolution: {selected_group}")
 
-if df_filtrado.empty:
+if df_filtered.empty:
     st.warning("Insufficient data for this group.")
 else:
-    max_x = df_filtrado['gdp_per_capita'].max() * 1.3
+    max_x = df_filtered['gdp_per_capita'].max() * 1.3
     
     fig = px.scatter(
-        df_filtrado, 
+        df_filtered, 
         x="gdp_per_capita", 
         y="years_schooling",
         animation_frame="year",      
