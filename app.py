@@ -63,6 +63,7 @@ grupos = {
 }
 
 
+grupos['Sem filtro'] = list(df['geo'].unique())
 grupos['Mundial'] = list(df['geo'].unique())
 
 grupo_selecionado = st.sidebar.selectbox("Escolha um Grupo:", list(grupos.keys()))
@@ -116,7 +117,8 @@ else:
         animation_group="name",     
         size="gdp_per_capita",      
         color="name",                
-        hover_name="name",           
+        hover_name="name",  
+        custom_data=["gdp_per_capita"],   
         log_x=True,                 
         size_max=60,
         range_x=[500, max_x],       
@@ -127,6 +129,9 @@ else:
             "name": "País",
             "year": "Ano"
         }
+    )
+    fig.update_traces(
+        hovertemplate="<b>%{hovertext}</b><br>PIB per Capita (US$ PPP): %{customdata[0]:,.2f}<br>Anos de Estudo: %{y:.2f}<extra></extra>"
     )
     fig.update_layout(height=600)
     st.plotly_chart(fig, use_container_width=True)
