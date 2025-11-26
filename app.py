@@ -120,7 +120,7 @@ else:
         log_x=True,                 
         size_max=60,
         range_x=[500, max_x],       
-        range_y=[0, 18],
+        range_y=[0, 15],
         labels={
             "gdp_per_capita": "PIB per Capita (US$ PPP)",
             "years_schooling": "Anos de Estudo",
