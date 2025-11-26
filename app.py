@@ -3,13 +3,13 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(
-    page_title="Riqueza vs Educação",
+    page_title="Wealth vs Education",
     page_icon="🎓",
     layout="wide"
 )
 
-st.title("🎓 Riqueza & Educação: Qual a Relação?")
-st.markdown("Esta aplicação interativa analisa a correlação histórica entre o **PIB per Capita (PPP)** e a **Média de Anos de Estudo** em diversos países entre 1990 e 2023.")
+st.title("🎓 Wealth & Education: What's the Relationship?")
+st.markdown("This interactive application analyzes the historical correlation between **GDP per Capita (PPP)** and **Mean Years of Schooling** across countries from 1990 to 2023.")
 st.divider()
 
 @st.cache_data
@@ -57,68 +57,68 @@ def carregar_dados():
 try:
     df = carregar_dados()
 except Exception as e:
-    st.error("Erro ao carregar dados. Verifique os arquivos na pasta.")
+    st.error("Error loading data. Please check the required files are present in the folder.")
     st.stop()
 
-st.sidebar.header("🎛️ Filtros de Análise")
+st.sidebar.header("🎛️ Analysis Filters")
 
 grupos = {
     'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA', 'ESP'],
-    'BRICS (Expandido)': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE', 'SAU'],
+    'BRICS (Expanded)': ['BRA', 'RUS', 'IND', 'CHN', 'ZAF', 'EGY', 'ETH', 'IRN', 'ARE', 'SAU'],
     'G7': ['CAN', 'FRA', 'DEU', 'ITA', 'JPN', 'GBR', 'USA'],
-    'América do Sul': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'ECU', 'GUY', 'PRY', 'PER', 'SUR', 'URY', 'VEN'],
-    'América Latina e Caribe': ['ARG', 'BHS', 'BRB', 'BLZ', 'BOL', 'BRA', 'CHL', 'COL', 'CRI', 'CUB', 'DOM', 'ECU', 'SLV', 'GTM', 'GUY', 'HTI', 'HND', 'JAM', 'MEX', 'NIC', 'PAN', 'PRY', 'PER', 'SUR', 'TTO', 'URY', 'VEN'],
-    'Ásia (Principais)': ['CHN', 'JPN', 'IND', 'KOR', 'IDN', 'SAU', 'TUR', 'THA', 'MYS', 'VNM', 'PHL', 'SGP', 'BGD', 'PAK'],
-    'Europa (União Europeia)': ['AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'],
-    'Lusófonos': ['BRA', 'PRT', 'AGO', 'MOZ', 'CPV', 'GNB', 'STP', 'TLS'],
-    'Tigres Asiáticos (+ Novos)': ['KOR', 'SGP', 'HKG', 'TWN', 'MYS', 'THA', 'VNM', 'IDN'], 
-    'OPEP + Outros': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY', 'RUS', 'GUY']
+    'South America': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'ECU', 'GUY', 'PRY', 'PER', 'SUR', 'URY', 'VEN'],
+    'Latin America & Caribbean': ['ARG', 'BHS', 'BRB', 'BLZ', 'BOL', 'BRA', 'CHL', 'COL', 'CRI', 'CUB', 'DOM', 'ECU', 'SLV', 'GTM', 'GUY', 'HTI', 'HND', 'JAM', 'MEX', 'NIC', 'PAN', 'PRY', 'PER', 'SUR', 'TTO', 'URY', 'VEN'],
+    'Asia (Major)': ['CHN', 'JPN', 'IND', 'KOR', 'IDN', 'SAU', 'TUR', 'THA', 'MYS', 'VNM', 'PHL', 'SGP', 'BGD', 'PAK'],
+    'Europe (European Union)': ['AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX', 'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE'],
+    'Lusophone Countries': ['BRA', 'PRT', 'AGO', 'MOZ', 'CPV', 'GNB', 'STP', 'TLS'],
+    'Asian Tigers (+ New)': ['KOR', 'SGP', 'HKG', 'TWN', 'MYS', 'THA', 'VNM', 'IDN'], 
+    'OPEC + Others': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY', 'RUS', 'GUY']
 }
 
 
-grupos['Sem filtro'] = list(df['geo'].unique())
-grupos['Mundial'] = list(df['geo'].unique())
+grupos['No filter'] = list(df['geo'].unique())
+grupos['World'] = list(df['geo'].unique())
 
-grupo_selecionado = st.sidebar.selectbox("Escolha um Grupo:", list(grupos.keys()))
+grupo_selecionado = st.sidebar.selectbox("Choose a Group:", list(grupos.keys()))
 lista_paises = grupos[grupo_selecionado]
 
 st.sidebar.divider()
-st.sidebar.markdown("### 🗂️ Fontes de Dados")
+st.sidebar.markdown("### 🗂️ Data Sources")
 st.sidebar.markdown(
     """
-    1. **Riqueza (PIB PPP):**
-    🔗 [Banco Mundial](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)
+    1. **Wealth (GDP PPP):**
+    🔗 [World Bank](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)
     
-    2. **Educação (Anos de Estudo):**
+    2. **Education (Mean Years of Schooling):**
     🔗 [UNDP HDR](https://hdr.undp.org/data-center/documentation-and-downloads)
     """
 )
 
 st.sidebar.divider()
-st.sidebar.markdown("### Autor")
+st.sidebar.markdown("### Author")
 st.sidebar.info(
     """
     **Thiago Alcebiades Rodrigues**
     
     📧 [thiago.alcebiades@unifesp.br](mailto:thiago.alcebiades@unifesp.br)
     
-    👔 [Perfil no LinkedIn](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
+    👔 [LinkedIn Profile](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
     """
 )
 
 st.sidebar.caption(
     """
-    **💡 Inspiração:**
-    Este projeto foi inspirado no trabalho visionário de [Hans Rosling](https://www.gapminder.org/) e na fundação Gapminder.
+    **💡 Inspiration:**
+    This project was inspired by the work of [Hans Rosling](https://www.gapminder.org/) and the Gapminder foundation.
     """
 )
 
 df_filtrado = df[df['geo'].isin(lista_paises)].dropna()
 
-st.subheader(f"🌍 Evolução Histórica: {grupo_selecionado}")
+st.subheader(f"🌍 Historical Evolution: {grupo_selecionado}")
 
 if df_filtrado.empty:
-    st.warning("Dados insuficientes para este grupo.")
+    st.warning("Insufficient data for this group.")
 else:
     max_x = df_filtrado['gdp_per_capita'].max() * 1.3
     
@@ -137,19 +137,19 @@ else:
         range_x=[500, max_x],       
         range_y=[0, 16],
         labels={
-            "gdp_per_capita": "PIB per Capita (US$ PPP)",
-            "years_schooling": "Anos de Estudo",
-            "name": "País",
-            "year": "Ano"
+            "gdp_per_capita": "GDP per Capita (US$ PPP)",
+            "years_schooling": "Years of Schooling",
+            "name": "Country",
+            "year": "Year"
         }
     )
     
     fig.update_traces(
         hovertemplate=(
             "<b>%{hovertext}</b>\n"
-            "PIB per Capita (US$ PPP): %{customdata[0]:,.2f}\n"
-            "População: %{customdata[1]:,.0f}\n"
-            "Anos de Estudo: %{y:.2f}<extra></extra>"
+            "GDP per Capita (US$ PPP): %{customdata[0]:,.2f}\n"
+            "Population: %{customdata[1]:,.0f}\n"
+            "Years of Schooling: %{y:.2f}<extra></extra>"
         )
     )
     fig.update_layout(height=600)
