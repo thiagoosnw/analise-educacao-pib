@@ -106,7 +106,7 @@ st.subheader(f"🌍 Evolução Histórica: {grupo_selecionado}")
 if df_filtrado.empty:
     st.warning("Dados insuficientes para este grupo.")
 else:
-    max_x = df_filtrado['gdp_per_capita'].max() * 1.5
+    max_x = df_filtrado['gdp_per_capita'].max() * 1.3
     
     fig = px.scatter(
         df_filtrado, 
@@ -120,7 +120,7 @@ else:
         log_x=True,                 
         size_max=60,
         range_x=[500, max_x],       
-        range_y=[0, 14],
+        range_y=[0, 18],
         labels={
             "gdp_per_capita": "PIB per Capita (US$ PPP)",
             "years_schooling": "Anos de Estudo",
