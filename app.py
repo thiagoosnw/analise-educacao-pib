@@ -38,7 +38,20 @@ def carregar_dados():
     df_edu_final['geo'] = df_edu_final['geo'].str.upper()
     df_edu_final['years_schooling'] = pd.to_numeric(df_edu_final['years_schooling'], errors='coerce')
 
+    df_pop = pd.read_csv('API_SP.POP.TOTL_DS2_en_csv_v2_246068.csv', skiprows=4)
+    cols_existentes_pop = [c for c in cols_fixas + anos if c in df_pop.columns]
+    df_pop = df_pop[cols_existentes_pop].melt(
+        id_vars=['Country Code', 'Country Name'],
+        var_name='year',
+        value_name='population'
+    )
+    df_pop = df_pop.rename(columns={'Country Code': 'geo', 'Country Name': 'name'})
+    df_pop['year'] = pd.to_numeric(df_pop['year'])
+    df_pop['geo'] = df_pop['geo'].str.upper()
+    df_pop['population'] = pd.to_numeric(df_pop['population'], errors='coerce')
+
     df_final = pd.merge(df_pib, df_edu_final, on=['geo', 'year'], how='inner')
+    df_final = pd.merge(df_final, df_pop[['geo', 'year', 'population']], on=['geo', 'year'], how='left')
     return df_final
 
 try:
@@ -115,10 +128,10 @@ else:
         y="years_schooling",
         animation_frame="year",      
         animation_group="name",     
-        size="gdp_per_capita",      
+        size="population",      
         color="name",                
         hover_name="name",  
-        custom_data=["gdp_per_capita"],   
+        custom_data=["gdp_per_capita", "population"],   
         log_x=True,                 
         size_max=60,
         range_x=[500, max_x],       
@@ -130,8 +143,14 @@ else:
             "year": "Ano"
         }
     )
+    
     fig.update_traces(
-        hovertemplate="<b>%{hovertext}</b><br>PIB per Capita (US$ PPP): %{customdata[0]:,.2f}<br>Anos de Estudo: %{y:.2f}<extra></extra>"
+        hovertemplate=(
+            "<b>%{hovertext}</b>\n"
+            "PIB per Capita (US$ PPP): %{customdata[0]:,.2f}\n"
+            "População: %{customdata[1]:,.0f}\n"
+            "Anos de Estudo: %{y:.2f}<extra></extra>"
+        )
     )
     fig.update_layout(height=600)
     st.plotly_chart(fig, use_container_width=True)
