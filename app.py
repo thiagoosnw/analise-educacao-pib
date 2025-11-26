@@ -79,8 +79,7 @@ groups = {
     'OPEC + Others': ['SAU', 'ARE', 'KWT', 'QAT', 'OMN', 'NGA', 'VEN', 'DZA', 'AGO', 'IRN', 'IRQ', 'LBY', 'RUS', 'GUY']
 }
 
-groups['No filter'] = list(df['geo'].unique())
-groups['World'] = list(df['geo'].unique())
+groups['All countries'] = list(df['geo'].unique())
 
 selected_group = st.sidebar.selectbox("Choose a Group:", list(groups.keys()))
 country_list = groups[selected_group]
