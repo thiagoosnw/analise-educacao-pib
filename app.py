@@ -52,7 +52,6 @@ def load_data():
 
     df_final = pd.merge(df_gdp, df_education_final, on=['geo', 'year'], how='inner')
     df_final = pd.merge(df_final, df_population[['geo', 'year', 'population']], on=['geo', 'year'], how='left')
-    # formatted population string with thousands separator (comma)
     df_final['population_str'] = df_final['population'].apply(
         lambda x: f"{int(x):,}" if pd.notna(x) else "N/A"
     )
