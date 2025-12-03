@@ -63,7 +63,7 @@ except Exception as e:
     st.error("Error loading data. Please check the required files are present in the folder.")
     st.stop()
 
-st.sidebar.header("🎛️ Analysis Filters")
+st.sidebar.header("Analysis Filters")
 
 groups = {
     'G20': ['ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'FRA', 'DEU', 'IND', 'IDN', 'ITA', 'JPN', 'KOR', 'MEX', 'RUS', 'SAU', 'ZAF', 'TUR', 'GBR', 'USA', 'ESP'],
@@ -84,7 +84,7 @@ selected_group = st.sidebar.selectbox("Choose a Group:", list(groups.keys()))
 country_list = groups[selected_group]
 
 st.sidebar.divider()
-st.sidebar.markdown("### 🗂️ Data Sources")
+st.sidebar.markdown("### Data Sources")
 st.sidebar.markdown(
     """
     1. **Wealth (GDP PPP):**
@@ -101,15 +101,15 @@ st.sidebar.info(
     """
     **Thiago Alcebiades Rodrigues**
     
-    📧 [thiago.alcebiades@unifesp.br](mailto:thiago.alcebiades@unifesp.br)
+    [thiago.alcebiades@unifesp.br](mailto:thiago.alcebiades@unifesp.br)
     
-    👔 [LinkedIn Profile](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
+    [LinkedIn Profile](https://www.linkedin.com/in/thiago-alcebiades-rodrigues-95446621b/)
     """
 )
 
 st.sidebar.caption(
     """
-    **💡 Inspiration:**
+    **Inspiration:**
     This project was inspired by the work of [Hans Rosling](https://www.gapminder.org/) and the Gapminder foundation.
     """
 )
@@ -117,7 +117,7 @@ st.sidebar.caption(
 df_filtered = df[df['geo'].isin(country_list)].dropna(subset=['gdp_per_capita', 'years_schooling']).copy()
 df_filtered['population_for_size'] = df_filtered['population'].fillna(1)
 
-st.subheader(f"🌍 Historical Evolution: {selected_group}")
+st.subheader(f"Historical Evolution: {selected_group}")
 
 if df_filtered.empty:
     st.warning("Insufficient data for this group.")
